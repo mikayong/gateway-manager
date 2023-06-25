@@ -1,0 +1,348 @@
+{
+    "projectId": "64468f8f585ce246c264",
+    "projectName": "gateway-manager",
+    "collections": [
+        {
+            "$id": "646dd913196fc991e2ab",
+            "$createdAt": "2022-12-04T09:18:08.637+00:00",
+            "$updatedAt": "2022-12-04T09:18:08.637+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "articles",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "title",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "content",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 100000,
+                    "default": null
+                },
+                {
+                    "key": "author",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "status",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": "draft"
+                },
+                {
+                    "key": "imageId",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "status",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "status"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "646efc59957865f4b9d5",
+            "$createdAt": "2022-12-04T09:18:11.121+00:00",
+            "$updatedAt": "2022-12-04T09:18:11.121+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "links",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "slug",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "articleId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "646efca7d4028e4c4cb8",
+            "$createdAt": "2022-12-04T09:18:13.420+00:00",
+            "$updatedAt": "2022-12-04T09:18:13.420+00:00",
+            "$permissions": [
+                "create(\"any\")"
+            ],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "newsletters",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "confirmed",
+                    "type": "boolean",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "email",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "format": "email",
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "unique",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "email"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "646f02c8e3121a20c41c",
+            "$createdAt": "2022-12-04T09:18:16.146+00:00",
+            "$updatedAt": "2022-12-04T09:18:16.146+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "settings",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "footerText",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "pageDescription",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 1023,
+                    "default": null
+                },
+                {
+                    "key": "pageTitle",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "646f033d77fb7ba2de65",
+            "$createdAt": "2022-12-04T09:18:43.478+00:00",
+            "$updatedAt": "2022-12-04T09:18:43.478+00:00",
+            "$permissions": [],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "header",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "url",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 4095,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "646f0765f3806e4ef4ca",
+            "$createdAt": "2022-12-04T09:19:51.235+00:00",
+            "$updatedAt": "2022-12-04T09:20:21.518+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "categories",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "slug",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "646f07c65d78d2c92609",
+            "$createdAt": "2022-12-04T09:21:13.169+00:00",
+            "$updatedAt": "2022-12-04T09:22:28.736+00:00",
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "databaseId": "644690130699e6fbd4a2",
+            "name": "Articles - Categories",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "articleId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "categoryId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "articleId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "articleId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "categoryId",
+                    "type": "key",
+                    "status": "available",
+                    "attributes": [
+                        "categoryId"
+                    ],
+                    "orders": [
+                        "ASC"
+                    ]
+                },
+                {
+                    "key": "unique",
+                    "type": "unique",
+                    "status": "available",
+                    "attributes": [
+                        "articleId",
+                        "categoryId"
+                    ],
+                    "orders": [
+                        "ASC",
+                        "ASC"
+                    ]
+                }
+            ]
+        }
+    ]
+}

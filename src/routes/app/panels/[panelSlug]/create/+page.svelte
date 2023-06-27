@@ -4,6 +4,7 @@
 	import Navbar from '$lib/components/navbar.svelte';
 	import type { Group, Panel } from '$lib/config.builder';
 	import { configStore } from '$lib/stores/config';
+	import { authStore } from '$lib/stores/auth';
 	import { ID } from 'appwrite';
 	import type { PageData } from './$types';
 
@@ -50,6 +51,8 @@
 
 			json[key] = value;
 		}
+
+		json["userID"] = $authStore.$id;
 
 		const document = await AppwriteService.createDocument(
 			panel.databaseId,

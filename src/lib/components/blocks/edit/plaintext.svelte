@@ -25,7 +25,7 @@
 </script>
 
 <input
-	class="disabled:opacity-25 w-full p-3 bg-white border-2 rounded-md border-slate-200 focus:outline-none focus:ring ring-gray-600"
+	class={config.view}
 	type={config.type}
 	disabled={document !== null && config.editDisabled}
 	name={block.attribute}

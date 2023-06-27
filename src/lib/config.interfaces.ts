@@ -86,6 +86,7 @@ export class EditPlaintext extends EditInterface {
 
 	placeholder = '';
 	type = 'text';
+	view = 'disabled:opacity-25 w-full p-3 bg-white border-2 rounded-md border-slate-200 focus:outline-none focus:ring ring-gray-600';
 	editDisabled = false;
 	createValue = '';
 
@@ -96,6 +97,11 @@ export class EditPlaintext extends EditInterface {
 
 	setType(type: string) {
 		this.type = type;
+		return this;
+	}
+
+	setView(view: string) {
+		this.view = view;
 		return this;
 	}
 

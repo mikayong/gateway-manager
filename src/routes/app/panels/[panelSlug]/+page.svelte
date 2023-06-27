@@ -173,8 +173,8 @@
 					{#each panel.labels as label (label.slug)}
 						{label.name}: 
 						<input 
-							type=text
-							name={panel.name}
+							type=search
+							name={label.name}
 							value={panel.queries}
 						/>
 					{/each}

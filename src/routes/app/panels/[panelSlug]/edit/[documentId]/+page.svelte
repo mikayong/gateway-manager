@@ -2,7 +2,6 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import { AppwriteService } from '$lib/appwrite';
 	import Navbar from '$lib/components/navbar.svelte';
-	import { Block, type Group, type Panel } from '$lib/config.builder';
 	import { configStore } from '$lib/stores/config';
 	import type { PageData } from './$types';
 

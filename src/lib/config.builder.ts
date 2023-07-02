@@ -260,7 +260,8 @@ export class Block {
 	}
 
 	delListInterface() {
-		delete this.listInterface;
+		if (this.listInterface)
+			delete this.listInterface;
 		return this;
 	}
 }

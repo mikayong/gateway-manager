@@ -25,12 +25,18 @@
 </script>
 
 {#if block.editInterface.name === "status"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" name={block.attribute}>
+	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+			name={block.attribute}	
+    		value={inputValue}
+			>
 	<option value="online">online</option>
 	<option value="offline" selected>offline</option>
 	</select>
 {:else if block.editInterface.name === "gwModel"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" name={block.attribute}>
+	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+			name={block.attribute}
+    		value={inputValue}
+			>
 	<option value="lg308" selected>LG308</option>
 	<option value="lg308n">LG308N</option>
 	<option value="lps8n">LPS8N</option>
@@ -42,7 +48,10 @@
 	<option value="hp0dout">HP0D</option>
 	</select>
 {:else if block.editInterface.name === "region"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" name={block.attribute}>
+	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+			name={block.attribute}
+    		value={inputValue}
+			>
 	<option value="eu868" selected>EU868</option>
 	<option value="eu433">EU433</option>
 	<option value="us915">US915</option>
@@ -58,7 +67,10 @@
 	<option value="kz">KZ</option>
 	</select>
 {:else if block.editInterface.name === "service"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" name={block.attribute}>
+	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+			name={block.attribute}
+    		value={inputValue}
+			>
 	<option value="fwd" selected>fwd</option>
 	<option value="station">station</option>
 	<option value="chirpstack">chirpstack</option>

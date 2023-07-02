@@ -138,6 +138,8 @@
 			</div>
 		</div> -->
 
+<!----------------------------------------------- start create button ------------------------------------------------------->
+
 		{#if panel.createEnabled}
 			<a href={`/app/panels/${panel.slug}/create`} class="flex items-center justify-center group">
 				<div class="p-3 text-sm text-white  rounded-l-md bg-primary-800 group-hover:bg-primary-900">
@@ -164,18 +166,21 @@
 	</div>
 </Navbar>
 
+<!----------------------------------------------- start search lable ------------------------------------------------------->
+
 <div class="p-4 text-base">
 	{#if panel.labels.length > 0}
 		<div class="w-full text-md">
 			<div class=" flex w-[fit-content] overflow-x-auto flex-nowrap space-x-3">
 				<form on:submit|preventDefault={onSearch}>
-					<div class="flex items-center justify-end space-x-4">
+					<div class="flex items-center justify-end space-x-4 text-slate-800 text-lg">
 					{#each panel.labels as label (label.slug)}
 						{label.name}: 
 						<input 
+							class="input p-3 border-2 variant-ghost-primary"
 							type=search
 							name={label.name}
-							value={panel.queries}
+							value={label.queries}
 						/>
 					{/each}
 					</div>
@@ -184,6 +189,7 @@
 		</div>
 	{/if}
 
+<!-----------------------------------------------end search lable ------------------------------------------------------->
 	<div>
 		<p class="mb-2 text-sm text-right text-primary-500 my-2">
 			{data.panelDocuments.total}{data.panelDocuments.total >= 5000 ? '+' : ''}
@@ -191,7 +197,7 @@
 		</p>
 		{#if data.panelDocuments.documents.length <= 0}
 			<div class="bg-primary-200 border-2 border-primary-200 rounded-md p-6">
-				<p class="text-primary-600 text-center">There are no results.</p>
+				<p class="text-primary-600 text-center">There are no element.</p>
 			</div>
 		{:else}
 			<div class="overflow-y-auto border-2 rounded-md border-primary-900">

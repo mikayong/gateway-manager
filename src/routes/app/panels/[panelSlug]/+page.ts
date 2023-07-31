@@ -51,6 +51,6 @@ export const load: PageLoad = async ({ params, url, parent }) => {
 			panel
 		};
 	} catch (err: any) {
-		throw error(500, { message: 'Could not load documents: ' + err.message });
+		throw error(500, { message: 'Could not load element: ' + err.message });
 	}
 };

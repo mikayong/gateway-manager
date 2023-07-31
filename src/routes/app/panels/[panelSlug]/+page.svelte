@@ -8,6 +8,7 @@
 	import { AppwriteService } from '$lib/appwrite';
 	import type { Models } from 'appwrite';
 	import { invalidateAll } from '$app/navigation';
+	import { authStore } from '$lib/stores/auth';
 
 	export let data: PageData;
 
@@ -173,15 +174,16 @@
 		<div class="w-full text-md">
 			<div class=" flex w-[fit-content] overflow-x-auto flex-nowrap space-x-3">
 				<form on:submit|preventDefault={onSearch}>
-					<div class="flex items-center justify-end space-x-4 text-slate-800 text-lg">
+					<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] text-lg">
 					{#each panel.labels as label (label.slug)}
 						{label.name}: 
 						<input 
-							class="input p-3 border-2 variant-ghost-primary"
+							class="border-2 variant-ghost-primary"
 							type=search
 							name={label.name}
 							value={label.queries}
 						/>
+						<button class="variant-filled-secondary">filter</button>
 					{/each}
 					</div>
 				</form>
@@ -196,9 +198,19 @@
 			{data.panelDocuments.total === 1 ? 'element' : 'elements'} found
 		</p>
 		{#if data.panelDocuments.documents.length <= 0}
-			<div class="bg-primary-200 border-2 border-primary-200 rounded-md p-6">
-				<p class="text-primary-600 text-center">There are no element.</p>
-			</div>
+			{#if panel.name == "Profile"}
+				<div class="bg-primary-200 border-2 border-primary-200 rounded-md p-6">
+					<p class="text-slate-900 text-bg">username: {$authStore.name}  </p>
+					<p class="text-slate-900 text-bg">email:    {$authStore.email} </p>
+					<p class="text-slate-900 text-bg">phone:    {$authStore.phone} </p>
+					<p class="text-slate-900 text-bg">registration:    {$authStore.registration} </p>
+
+				</div>
+			{:else}
+				<div class="bg-primary-200 border-2 border-primary-200 rounded-md p-6">
+					<p class="text-primary-600 text-center">There are no element.</p>
+				</div>
+			{/if}
 		{:else}
 			<div class="overflow-y-auto border-2 rounded-md border-primary-900">
 				<table class="relative w-full overflow-hidden border-collapse table-fixed table-hover">
@@ -318,6 +330,7 @@
 		{/if}
 	</div>
 
+	{#if data.panelDocuments.documents.length > 0}
 	<div class="flex items-start justify-between mt-6">
 		<div class="flex flex-col space-y-2">
 			<p class="text-sm text-primary-500">Results per page:</p>
@@ -353,4 +366,6 @@
 			</div>
 		</div>
 	</div>
+	{/if}
+
 </div>

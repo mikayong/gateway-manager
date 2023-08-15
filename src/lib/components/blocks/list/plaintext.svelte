@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Block, Group, Panel } from '$lib/config.builder';
-	import type { ListPlaintext } from '$lib/config.interfaces';
+	import type { ListInterface, ListPlaintext } from '$lib/config.interfaces';
 	import type { Models } from 'appwrite';
+	import { attribute_to_object } from 'svelte/internal';
 
 	export let config: ListPlaintext;
 	export let document: any & Models.Document;
@@ -11,16 +12,16 @@
 	export let block: Block;
 	export let ready = true;
 
-	if (block.attribute === "status") {
-		if (document[block.attribute] === true) {
-			value = "online";
-		} else {
-			value = "offline";
-		}
-	}
-
 	// Prevents compilation errors
 	config; document; value; panel; group; block; ready;
 </script>
 
-<p class="max-h-[24px] overflow-hidden">{value}</p>
+{#if block.attribute === "status"}
+	{#if document[block.attribute] === true}
+		<p class="max-h-[24px] overflow-hidden bg-green-500">online</p>
+	{:else}
+		<p class="max-h-[24px] overflow-hidden bg-red-600">offline</p>
+	{/if}
+{:else}
+	<p class="max-h-[24px] overflow-hidden">{value}</p>
+{/if}

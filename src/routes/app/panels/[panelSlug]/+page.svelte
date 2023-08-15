@@ -174,7 +174,7 @@
 		<div class="w-full text-md">
 			<div class=" flex w-[fit-content] overflow-x-auto flex-nowrap space-x-3">
 				<form on:submit|preventDefault={onSearch}>
-					<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] text-lg">
+					<div class="p-2 text-lg text-slate-900">
 					{#each panel.labels as label (label.slug)}
 						{label.name}: 
 						<input 
@@ -183,7 +183,7 @@
 							name={label.name}
 							value={label.queries}
 						/>
-						<button class="variant-filled-secondary">filter</button>
+						<button class="bg-primary-800">filter</button>
 					{/each}
 					</div>
 				</form>
@@ -193,10 +193,6 @@
 
 <!-----------------------------------------------end search lable ------------------------------------------------------->
 	<div>
-		<p class="mb-2 text-sm text-right text-primary-500 my-2">
-			{data.panelDocuments.total}{data.panelDocuments.total >= 5000 ? '+' : ''}
-			{data.panelDocuments.total === 1 ? 'element' : 'elements'} found
-		</p>
 		{#if data.panelDocuments.documents.length <= 0}
 			{#if panel.name == "Profile"}
 				<div class="bg-primary-200 border-2 border-primary-200 rounded-md p-6">
@@ -212,6 +208,10 @@
 				</div>
 			{/if}
 		{:else}
+		    <p class="mb-2 text-sm text-right text-primary-500 my-2">
+		    	{data.panelDocuments.total}{data.panelDocuments.total >= 5000 ? '+' : ''}
+		    	{data.panelDocuments.total === 1 ? 'element' : 'elements'} found
+		    </p>
 			<div class="overflow-y-auto border-2 rounded-md border-primary-900">
 				<table class="relative w-full overflow-hidden border-collapse table-fixed table-hover">
 					<thead class="border-b-2 border-primary-800">

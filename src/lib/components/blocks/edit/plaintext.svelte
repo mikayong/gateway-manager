@@ -25,15 +25,21 @@
 </script>
 
 {#if block.editInterface.name === "status"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+	{#if inputValue === true}
+	<input class="input p-3 border-2 variant-ghost-primary text-lg text-green-600" 
 			name={block.attribute}	
-    		value={inputValue}
-			>
-	<option value="online">online</option>
-	<option value="offline" selected>offline</option>
-	</select>
+    		value="online"
+			disabled="true"
+			/>
+	{:else}
+	<input class="input p-3 border-2 variant-ghost-primary text-lg text-red-600" 
+			name={block.attribute}	
+    		value="offline"
+			disabled="true"
+			/>
+	{/if}
 {:else if block.editInterface.name === "gwModel"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+	<select class="input p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
 			name={block.attribute}
     		value={inputValue}
 			>
@@ -48,7 +54,7 @@
 	<option value="hp0dout">HP0D</option>
 	</select>
 {:else if block.editInterface.name === "region"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+	<select class="input p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
 			name={block.attribute}
     		value={inputValue}
 			>
@@ -66,8 +72,17 @@
 	<option value="ru">RU</option>
 	<option value="kz">KZ</option>
 	</select>
+{:else if block.editInterface.name === "operate"}
+	<select class="input p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+			name={block.attribute}
+    		value={inputValue}
+			>
+	<option value="deal" selected>Deal</option>
+	<option value="hold">Hold</option>
+	<option value="DONE">DONE</option>
+	</select>
 {:else if block.editInterface.name === "service"}
-	<select class="select p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
+	<select class="input p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
 			name={block.attribute}
     		value={inputValue}
 			>
@@ -79,7 +94,7 @@
     <input
     	class={config.view}
     	type={config.type}
-    	disabled={document !== null && config.editDisabled}
+    	readonly={document !== null && config.editDisabled}
     	name={block.attribute}
     	value={inputValue}
     	on:input={onInput}

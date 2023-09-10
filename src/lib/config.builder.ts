@@ -121,7 +121,7 @@ export class Panel {
 	}
 
 	addDefaultLabel() {
-		this.labels.push(createLabel('').setIcon('🗄️').setName('All').setQueries([]));
+		this.labels.push(createLabel('').setIcon('🗄️').setName('All').setQueries(''));
 		return this;
 	}
 
@@ -188,7 +188,7 @@ export class Panel {
 export class Label {
 	name;
 	icon = '';
-	queries: string[] = [];
+	queries: string = '';
 
 	constructor(public slug: string) {
 		this.name = slug;
@@ -204,7 +204,7 @@ export class Label {
 		return this;
 	}
 
-	setQueries(queries: string[]) {
+	setQueries(queries: string) {
 		this.queries = queries;
 		return this;
 	}

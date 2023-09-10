@@ -18,7 +18,6 @@ let account: Account;
 export const AppwriteService = {
 	setClient: (endpoint: string, projectId: string) => {
 		client = new Client().setEndpoint(endpoint).setProject(projectId);
-
 		databases = new Databases(client);
 		storage = new Storage(client);
 		account = new Account(client);
@@ -81,5 +80,8 @@ export const AppwriteService = {
 	},
 	getFilePreview: async (bucketId: string, fileId: string) => {
 		return await storage.getFilePreview(bucketId, fileId, 500);
+	},
+	subscribe: (channel: string | string[], callback: any) => {
+		return client.subscribe(channel, callback);
 	}
 };

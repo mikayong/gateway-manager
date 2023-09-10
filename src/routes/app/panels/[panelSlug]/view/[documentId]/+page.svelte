@@ -81,6 +81,7 @@
 		{#each panel.blocks as block}
 			{#if block.viewInterface}
 				{@const value = data.panelDocument[block.attribute]}
+				{@const lastSeen = Date.now() - Date.parse(document['$updatedAt'])}
 
 				<div>
 					<span class="text-lg text-primary-900 mb-2">{block.viewInterface.name}: 
@@ -92,6 +93,7 @@
 						{block}
 						document={data.panelDocument}
 						{value}
+						{lastSeen}
 					/>
 					</span>
 				</div>

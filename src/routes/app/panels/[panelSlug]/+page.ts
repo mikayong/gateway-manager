@@ -6,7 +6,7 @@ import { PageUtils } from '$lib/utils';
 import { authStore } from '$lib/stores/auth';
 import { get } from 'svelte/store';
 
-export const ssr = false;
+export const ssr = false
 
 export const load: PageLoad = async ({ params, url, parent }) => {
 	await parent();
@@ -27,8 +27,11 @@ export const load: PageLoad = async ({ params, url, parent }) => {
 
 		const labelObj = panel.labels.find((l) => l.slug === label);
 		if (labelObj) {
-			const optQuery = 'equal("' + label + '",' + labelObj.queries + ')';
-			query.push(optQuery);
+			if (labelObj.queries.length > 0) {
+				const optQuery = 'equal("' + label + '","' + labelObj.queries + '")';
+				//const optQuery = 'search("' + labelObj.queries + '",' + 'sid)';
+				query.push(optQuery);
+			}
 		}
 
 		const documents = await AppwriteService.listDocuments<any>(
@@ -38,7 +41,6 @@ export const load: PageLoad = async ({ params, url, parent }) => {
 			(page - 1) * limit,
 			query
 		);
-
 
 		return {
 			panelDocuments: documents,

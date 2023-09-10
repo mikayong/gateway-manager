@@ -11,9 +11,18 @@
 	export let group: Group;
 	export let block: Block;
 	export let ready = true;
+	export let lastSeen: number;
 
 	// Prevents compilation errors
-	config; document; value; panel; group; block; ready;
+	config; document; value; panel; group; block; ready; lastSeen;
 </script>
 
-<span class="bg-gradient-to-br from-blue-500 to-cyan-300 bg-clip-text text-transparent box-decoration-clone">{value}</span>
+{#if block.attribute === "status"}
+	{#if lastSeen < 300000}
+		<p class="w-20 max-h-[24px] overflow-hidden bg-green-500">Connected</p>
+	{:else}
+		<p class="w-20 max-h-[24px] overflow-hidden bg-red-600">Offline</p>
+	{/if}
+{:else}
+	<p class=" from-blue-500 to-cyan-300 overflow-hidden">{value}</p>
+{/if}

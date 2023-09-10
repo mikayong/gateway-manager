@@ -11,16 +11,18 @@
 	export let group: Group;
 	export let block: Block;
 	export let ready = true;
+	export let lastSeen: number;
 
 	// Prevents compilation errors
-	config; document; value; panel; group; block; ready;
+	config; document; value; panel; group; block; ready; lastSeen;
+	
 </script>
 
 {#if block.attribute === "status"}
-	{#if document[block.attribute] === true}
-		<p class="max-h-[24px] overflow-hidden bg-green-500">online</p>
+	{#if lastSeen < 300000}
+		<p class="max-h-[24px] overflow-hidden bg-green-500">Connected</p>
 	{:else}
-		<p class="max-h-[24px] overflow-hidden bg-red-600">offline</p>
+		<p class="max-h-[24px] overflow-hidden bg-red-600">Offline</p>
 	{/if}
 {:else}
 	<p class="max-h-[24px] overflow-hidden">{value}</p>

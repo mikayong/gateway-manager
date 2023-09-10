@@ -2,8 +2,12 @@
 	import Navbar from '$lib/components/navbar.svelte';
 	import { configStore } from '$lib/stores/config';
 	import { ConicGradient } from '@skeletonlabs/skeleton';
+	import { invalidateAll } from '$app/navigation';
+	import { AppwriteService } from '$lib/appwrite';
 	
 	export let data;
+
+	AppwriteService.subscribe('documents', invalidateAll);
 </script>
 
 <Navbar title="Welcome" icon="👋" description="Are you ready to change the world today? 😏" />

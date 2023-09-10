@@ -25,19 +25,11 @@
 </script>
 
 {#if block.editInterface.name === "status"}
-	{#if inputValue === true}
-	<input class="input p-3 border-2 variant-ghost-primary text-lg text-green-600" 
+	<input class="input p-3 border-2 variant-ghost-primary text-lg text-slate-500" 
 			name={block.attribute}	
-    		value="online"
+    		value="NotAtten"
 			disabled="true"
 			/>
-	{:else}
-	<input class="input p-3 border-2 variant-ghost-primary text-lg text-red-600" 
-			name={block.attribute}	
-    		value="offline"
-			disabled="true"
-			/>
-	{/if}
 {:else if block.editInterface.name === "gwModel"}
 	<select class="input p-3 border-2 variant-ghost-primary text-lg text-slate-900" 
 			name={block.attribute}
@@ -58,19 +50,19 @@
 			name={block.attribute}
     		value={inputValue}
 			>
-	<option value="eu868" selected>EU868</option>
-	<option value="eu433">EU433</option>
-	<option value="us915">US915</option>
-	<option value="cn470">CN470</option>
-	<option value="cn779">CN779</option>
-	<option value="au923">AU923</option>
-	<option value="as1">AS1</option>
-	<option value="as2">AS2</option>
-	<option value="as3">AS3</option>
-	<option value="kr">KR</option>
-	<option value="in">IN</option>
-	<option value="ru">RU</option>
-	<option value="kz">KZ</option>
+	<option value="EU" selected>EU868</option>
+	<option value="EU2">EU433</option>
+	<option value="US">US915</option>
+	<option value="CN">CN470</option>
+	<option value="CN2">CN779</option>
+	<option value="AU">AU923</option>
+	<option value="AS1">AS923-1</option>
+	<option value="AS2">AS923-2</option>
+	<option value="AS3">AS923-3</option>
+	<option value="KR">KR920</option>
+	<option value="IN">IN865</option>
+	<option value="RU">RU864</option>
+	<option value="KZ">KZ</option>
 	</select>
 {:else if block.editInterface.name === "operate"}
 	<select class="input p-3 border-2 variant-ghost-primary text-lg text-slate-900" 

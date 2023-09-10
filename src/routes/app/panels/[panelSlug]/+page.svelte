@@ -9,6 +9,7 @@
 	import type { Models } from 'appwrite';
 	import { invalidateAll } from '$app/navigation';
 	import { authStore } from '$lib/stores/auth';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
 
@@ -101,9 +102,24 @@
 		}
 	}
 
-	let inputValue: any;
-	async function onSearch (e:any) {
+	let labelId: string;
+	async function onLabelFilter() {
+		if (panel.labels.length > 0) {
+			panel.labels.forEach((label) => {
+				if (label.queries.length > 0) {
+					$page.url.searchParams.set('label', label.name);
+					goto(`?${$page.url.searchParams.toString()}`);
+				}
+			})
+		}
 	}
+
+	async function onLabelReset() {
+		goto(`/app/panels/${panel.slug}`);
+	}
+
+	AppwriteService.subscribe('documents', invalidateAll);
+
 </script>
 
 <Navbar
@@ -113,31 +129,6 @@
 	description={panel.description}
 >
 	<div class="flex items-center justify-end space-x-4">
-		<!-- <div class="flex items-center justify-center group">
-			<div class="p-3 rounded-l-md bg-primary-100 text-primary-700">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="w-5 h-5"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-					/>
-				</svg>
-			</div>
-			<div class="p-1 pl-0 rounded-r-md bg-primary-100 text-primary-700">
-				<input
-					placeholder="I am looking for ..."
-					class="bg-white p-0 m-0 h-[2.25rem] rounded-md px-2 text-sm focus:outline-none focus:ring focus:ring-slate-300 focus:ring-inset"
-					type="text"
-				/>
-			</div>
-		</div> -->
 
 <!----------------------------------------------- start create button ------------------------------------------------------->
 
@@ -173,20 +164,20 @@
 	{#if panel.labels.length > 0}
 		<div class="w-full text-md">
 			<div class=" flex w-[fit-content] overflow-x-auto flex-nowrap space-x-3">
-				<form on:submit|preventDefault={onSearch}>
+				<form on:submit|preventDefault={onLabelFilter} on:reset|preventDefault={onLabelReset}> 
 					<div class="p-2 text-lg text-slate-900">
 					{#each panel.labels as label (label.slug)}
 						{label.name}: 
 						<input 
 							class="border-2 variant-ghost-primary"
-							type=search
-							name={label.name}
-							value={label.queries}
+							type="text"
+							bind:value={label.queries}
+							placeholder="GWID"
 						/>
-						<button class="bg-primary-800">filter</button>
 					{/each}
+						<button type="submit" class="bg-primary-800 w-24">filter</button>
+						<button type="reset" class="bg-primary-800 w-24">reset</button>
 					</div>
-				</form>
 			</div>
 		</div>
 	{/if}
@@ -308,6 +299,7 @@
 								{#each panel.blocks as block}
 									{#if block.listInterface}
 										{@const value = document[block.attribute]}
+										{@const lastSeen = Date.now() - Date.parse(document['$updatedAt'])}
 
 										<td class="px-4 py-4 text-slate-900">
 											<svelte:component
@@ -318,6 +310,7 @@
 												{block}
 												{document}
 												{value}
+												{lastSeen}
 											/>
 										</td>
 									{/if}
